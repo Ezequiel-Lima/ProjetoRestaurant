@@ -52,6 +52,7 @@ namespace ProjetoRestaurant
             this.btnProduto.TabIndex = 1;
             this.btnProduto.Text = "Produto";
             this.btnProduto.UseVisualStyleBackColor = true;
+            this.btnProduto.Click += new System.EventHandler(this.btnProduto_Click);
             // 
             // btnDepartamento
             // 

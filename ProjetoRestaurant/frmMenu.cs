@@ -22,5 +22,12 @@ namespace ProjetoRestaurant
             frmEmpregado empregado = new frmEmpregado();
             empregado.Show();
         }
+
+        private void btnProduto_Click(object sender, EventArgs e)
+        {
+            frmProdutos produto = new frmProdutos();
+            produto.Show();
+        }
+
     }
 }
