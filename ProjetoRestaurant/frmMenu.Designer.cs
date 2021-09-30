@@ -49,7 +49,7 @@ namespace ProjetoRestaurant
             this.btnProduto.Location = new System.Drawing.Point(183, 12);
             this.btnProduto.Name = "btnProduto";
             this.btnProduto.Size = new System.Drawing.Size(155, 45);
-            this.btnProduto.TabIndex = 0;
+            this.btnProduto.TabIndex = 1;
             this.btnProduto.Text = "Produto";
             this.btnProduto.UseVisualStyleBackColor = true;
             // 
@@ -58,7 +58,7 @@ namespace ProjetoRestaurant
             this.btnDepartamento.Location = new System.Drawing.Point(355, 12);
             this.btnDepartamento.Name = "btnDepartamento";
             this.btnDepartamento.Size = new System.Drawing.Size(155, 45);
-            this.btnDepartamento.TabIndex = 0;
+            this.btnDepartamento.TabIndex = 2;
             this.btnDepartamento.Text = "Departamento";
             this.btnDepartamento.UseVisualStyleBackColor = true;
             // 

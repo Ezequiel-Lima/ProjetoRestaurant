@@ -84,7 +84,7 @@ namespace ProjetoRestaurant
             // btnCadastrar
             // 
             this.btnCadastrar.AutoSize = true;
-            this.btnCadastrar.Location = new System.Drawing.Point(197, 197);
+            this.btnCadastrar.Location = new System.Drawing.Point(193, 196);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(79, 20);
             this.btnCadastrar.TabIndex = 3;
