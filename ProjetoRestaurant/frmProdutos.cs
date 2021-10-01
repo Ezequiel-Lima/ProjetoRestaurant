@@ -205,6 +205,65 @@ namespace ProjetoRestaurant
             limparTextBoxes(this.Controls);
         }
 
+        private void btnSalvarAlteracoes_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = Conexao.obterConexao();
+            SqlCommand objComandoSql = new SqlCommand();
+
+            if (txbNomeProduto.Text == "")
+            {
+                MessageBox.Show("Obrigatório campos Nome Empregado");
+                txbNomeProduto.Focus();
+            }
+            else if (txbValorProduto.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo Sexo");
+                txbValorProduto.Focus();
+            }
+            else if (txbQuantidade.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo Cargo");
+                txbQuantidade.Focus();
+            }
+            else
+            {
+                try
+                {
+                    string nomeProduto = txbNomeProduto.Text;
+                    string valorProduto = txbValorProduto.Text;
+                    string quantidade = txbQuantidade.Text;
+                    int cd = Convert.ToInt32(txbCodigoProduto.Text);
+
+                    string strSql = "update produto set nome_do_produto = @nomeProduto, valor_produto = @valorProduto, " +
+                        "quantidade_produto = @quantidade where id_produto = @cd";
+
+                    objComandoSql.CommandText = strSql;
+                    objComandoSql.Connection = conn;
+
+                    objComandoSql.Parameters.Add("@nomeProduto", SqlDbType.VarChar).Value = nomeProduto;
+                    objComandoSql.Parameters.Add("@valorProduto", SqlDbType.Float).Value = valorProduto;
+                    objComandoSql.Parameters.Add("@quantidade", SqlDbType.Int).Value = quantidade;
+                    objComandoSql.Parameters.Add("@cd", SqlDbType.Int).Value = cd;
+
+                    //conn.Open();
+                    objComandoSql.ExecuteNonQuery();
+                    objComandoSql.Parameters.Clear();
+
+                    MessageBox.Show("Dados alterados com sucesso");
+                    txbBuscar.Text = "*";
+                    limparTextBoxes(this.Controls);
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Algo deu Ruim\n" + erro.Message);
+                    conn.Close();
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
 
     }
 }
