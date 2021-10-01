@@ -41,6 +41,20 @@ namespace ProjetoRestaurant
             limparTextBoxes(this.Controls);
         }
 
+        private void carregarUsuario()
+        {
+            txbCodigoProduto.Text = dgvfunc.SelectedRows[0].Cells[0].Value.ToString();
+            txbNomeProduto.Text = dgvfunc.SelectedRows[0].Cells[1].Value.ToString();
+            txbValorProduto.Text = dgvfunc.SelectedRows[0].Cells[2].Value.ToString();
+            txbQuantidade.Text = dgvfunc.SelectedRows[0].Cells[3].Value.ToString();
+            txbValorTotal.Text = dgvfunc.SelectedRows[0].Cells[4].Value.ToString();
+        }
+
+        private void dgvfunc_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            carregarUsuario();
+        }
+
         private void txbBuscar_TextChanged(object sender, EventArgs e)
         {
             SqlConnection conn = Conexao.obterConexao();
@@ -51,15 +65,13 @@ namespace ProjetoRestaurant
             {
                 try
                 {
-                    objComandoSql.CommandText = "Select * from produto where nome_do_produto like ('%" + txbBuscar.Text + "%')";
+                    objComandoSql.CommandText = "Select *, valor_produto * quantidade_produto as valor_total from produto where nome_do_produto like ('%" + txbBuscar.Text + "%')";
                     objComandoSql.Connection = conn;
-
 
                     //recebe os dados de uma tabela apos a execuçã de uma select
                     SqlDataAdapter da = new SqlDataAdapter();
 
                     DataTable dt = new DataTable();
-
 
                     //recebe os dados da instrução select
                     da.SelectCommand = objComandoSql;
@@ -75,6 +87,124 @@ namespace ProjetoRestaurant
                 }
             }
         }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = Conexao.obterConexao();
+            SqlCommand objComandoSql = new SqlCommand();
+
+            objComandoSql.Connection = conn;
+
+            if (txbNomeProduto.Text == "")
+            {
+                MessageBox.Show("Obrigatório campos Nome Empregado");
+                txbNomeProduto.Focus();
+            }
+            else if (txbValorProduto.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo Sexo");
+                txbValorProduto.Focus();
+            }
+            else if (txbQuantidade.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo Cargo");
+                txbQuantidade.Focus();
+            }
+            else
+            {
+                try
+                {
+                    string nomeProduto = txbNomeProduto.Text;
+                    string valorProduto = txbValorProduto.Text;
+                    string quantidade = txbQuantidade.Text;
+
+                    string strSql = $"insert into produto (nome_do_produto, valor_produto, quantidade_produto)" +
+                        $" values ('{nomeProduto}','{valorProduto}','{quantidade}')";
+
+                    objComandoSql = new SqlCommand(strSql, conn);
+                    objComandoSql.ExecuteNonQuery();
+                }
+                catch (Exception erro)
+                {
+
+                    MessageBox.Show("" + erro);
+                    conn.Close();
+                }
+                finally
+                {
+                    conn.Close();
+                    limparTextBoxes(this.Controls);
+                    MessageBox.Show("Produto Cadastrado com Sucesso!");
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = Conexao.obterConexao();
+            SqlCommand objComandoSql = new SqlCommand();
+
+            if (DialogResult.OK == MessageBox.Show("Tem certeza que deseja deletar?", "Deletar", MessageBoxButtons.OKCancel, MessageBoxIcon.Question))
+            {
+                MessageBox.Show("Resposta SIM");
+
+                if (txbNomeProduto.Text == "")
+                {
+                    MessageBox.Show("Obrigatório campos Nome Empregado");
+                    txbNomeProduto.Focus();
+                }
+                else if (txbValorProduto.Text == "")
+                {
+                    MessageBox.Show("Obrigatório campo Sexo");
+                    txbValorProduto.Focus();
+                }
+                else if (txbQuantidade.Text == "")
+                {
+                    MessageBox.Show("Obrigatório campo Cargo");
+                    txbQuantidade.Focus();
+                }
+                else
+                {
+                    try
+                    {
+                        string nomeProduto = txbNomeProduto.Text;
+                        string valorProduto = txbValorProduto.Text;
+                        string quantidade = txbQuantidade.Text;
+                        int cd = Convert.ToInt32(txbCodigoProduto.Text);
+
+                        string strSql = $"DELETE FROM produto WHERE id_produto = @cd";
+
+                        objComandoSql.CommandText = strSql;
+                        objComandoSql.Connection = conn;
+
+                        objComandoSql.Parameters.Add("@nome_do_produto", SqlDbType.VarChar).Value = nomeProduto;
+                        objComandoSql.Parameters.Add("@valor_produto", SqlDbType.VarChar).Value = valorProduto;
+                        objComandoSql.Parameters.Add("@quantidade_produto", SqlDbType.VarChar).Value = quantidade;
+                        objComandoSql.Parameters.Add("@cd", SqlDbType.Int).Value = cd;
+
+                        objComandoSql.ExecuteNonQuery();
+                        objComandoSql.Parameters.Clear();
+
+                        MessageBox.Show("Dados deletados com sucesso");
+                    }
+                    catch (Exception erro)
+                    {
+                        MessageBox.Show("Algo deu Ruim\n" + erro.Message);
+                        conn.Close();
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Respostas Não");
+            }
+            limparTextBoxes(this.Controls);
+        }
+
 
     }
 }

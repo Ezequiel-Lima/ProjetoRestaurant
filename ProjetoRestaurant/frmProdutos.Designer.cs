@@ -80,6 +80,7 @@ namespace ProjetoRestaurant
             this.dgvfunc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvfunc.Size = new System.Drawing.Size(836, 310);
             this.dgvfunc.TabIndex = 47;
+            this.dgvfunc.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvfunc_CellDoubleClick);
             // 
             // btnDelete
             // 
@@ -89,6 +90,7 @@ namespace ProjetoRestaurant
             this.btnDelete.TabIndex = 39;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // txbLimpar
             // 
@@ -108,6 +110,7 @@ namespace ProjetoRestaurant
             this.btnSalvar.TabIndex = 37;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // txbInfo12
             // 
@@ -146,7 +149,7 @@ namespace ProjetoRestaurant
             this.txbCodigoProduto.Location = new System.Drawing.Point(333, 32);
             this.txbCodigoProduto.Name = "txbCodigoProduto";
             this.txbCodigoProduto.Size = new System.Drawing.Size(410, 34);
-            this.txbCodigoProduto.TabIndex = 30;
+            this.txbCodigoProduto.TabIndex = 0;
             // 
             // txbInfo9
             // 
@@ -160,11 +163,12 @@ namespace ProjetoRestaurant
             // 
             // txbValorTotal
             // 
+            this.txbValorTotal.Enabled = false;
             this.txbValorTotal.Font = new System.Drawing.Font("Sylfaen", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbValorTotal.Location = new System.Drawing.Point(333, 192);
             this.txbValorTotal.Name = "txbValorTotal";
             this.txbValorTotal.Size = new System.Drawing.Size(410, 34);
-            this.txbValorTotal.TabIndex = 34;
+            this.txbValorTotal.TabIndex = 4;
             // 
             // txbQuantidade
             // 
@@ -172,7 +176,7 @@ namespace ProjetoRestaurant
             this.txbQuantidade.Location = new System.Drawing.Point(333, 152);
             this.txbQuantidade.Name = "txbQuantidade";
             this.txbQuantidade.Size = new System.Drawing.Size(410, 34);
-            this.txbQuantidade.TabIndex = 33;
+            this.txbQuantidade.TabIndex = 3;
             // 
             // txbValorProduto
             // 
@@ -180,7 +184,7 @@ namespace ProjetoRestaurant
             this.txbValorProduto.Location = new System.Drawing.Point(333, 112);
             this.txbValorProduto.Name = "txbValorProduto";
             this.txbValorProduto.Size = new System.Drawing.Size(410, 34);
-            this.txbValorProduto.TabIndex = 32;
+            this.txbValorProduto.TabIndex = 2;
             // 
             // txbNomeProduto
             // 
@@ -188,7 +192,7 @@ namespace ProjetoRestaurant
             this.txbNomeProduto.Location = new System.Drawing.Point(333, 72);
             this.txbNomeProduto.Name = "txbNomeProduto";
             this.txbNomeProduto.Size = new System.Drawing.Size(410, 34);
-            this.txbNomeProduto.TabIndex = 31;
+            this.txbNomeProduto.TabIndex = 1;
             // 
             // txbInfo8
             // 
@@ -204,7 +208,7 @@ namespace ProjetoRestaurant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(861, 723);
             this.Controls.Add(this.txbBuscar);
             this.Controls.Add(this.lblBuscar);

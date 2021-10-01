@@ -230,7 +230,7 @@ namespace ProjetoRestaurant
             this.lblCod.AutoSize = true;
             this.lblCod.Location = new System.Drawing.Point(105, 37);
             this.lblCod.Name = "lblCod";
-            this.lblCod.Size = new System.Drawing.Size(0, 30);
+            this.lblCod.Size = new System.Drawing.Size(0, 20);
             this.lblCod.TabIndex = 30;
             // 
             // frmEmpregado
@@ -257,6 +257,7 @@ namespace ProjetoRestaurant
             this.Controls.Add(this.txbSexo);
             this.Controls.Add(this.txbEmpregado);
             this.Controls.Add(this.txbInfo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmEmpregado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Empregado";
