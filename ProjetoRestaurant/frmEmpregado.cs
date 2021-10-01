@@ -244,5 +244,84 @@ namespace ProjetoRestaurant
             limparTextBoxes(this.Controls);
         }
 
+        private void btnSalvarAlteracao_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = Conexao.obterConexao();
+            SqlCommand objComandoSql = new SqlCommand();
+
+
+            if (txbEmpregado.Text == "")
+            {
+                MessageBox.Show("Obrigatório campos Nome Empregado");
+                txbEmpregado.Focus();
+            }
+            else if (txbSexo.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo Sexo");
+                txbSexo.Focus();
+            }
+            else if (txbCargo.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo Cargo");
+                txbCargo.Focus();
+            }
+            else if (txbTelefone.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo Telefone");
+                txbTelefone.Focus();
+            }
+            else if (txbCidade.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo Cidade");
+                txbCidade.Focus();
+            }
+            else if (txbCodigo.Text == "")
+            {
+                MessageBox.Show("Obrigatório campo Cidade");
+                txbCodigo.Focus();
+            }
+            else
+            {
+                try
+                {
+                    string nomeEmpregado = txbEmpregado.Text;
+                    string sexo          = txbSexo.Text;
+                    string cargo         = txbCargo.Text;
+                    string telefone      = txbTelefone.Text;
+                    string cidade        = txbCidade.Text;
+                    int cd               = Convert.ToInt32(txbCodigo.Text);
+
+                    string strSql = "update empregado set nome_empregado = @nomeEmpregado, sexo = @sexo, cargo = @cargo, telefone = @telefone, cidade = @cidade where id_empregado = @cd";
+
+                    objComandoSql.CommandText = strSql;
+                    objComandoSql.Connection = conn;
+
+                    objComandoSql.Parameters.Add("@nomeEmpregado", SqlDbType.VarChar).Value = nomeEmpregado;
+                    objComandoSql.Parameters.Add("@sexo", SqlDbType.VarChar).Value = sexo;
+                    objComandoSql.Parameters.Add("@cargo", SqlDbType.VarChar).Value = cargo;
+                    objComandoSql.Parameters.Add("@telefone", SqlDbType.VarChar).Value = telefone;
+                    objComandoSql.Parameters.Add("@cidade", SqlDbType.VarChar).Value = cidade;
+                    objComandoSql.Parameters.Add("@cd", SqlDbType.Int).Value = cd;
+
+                    //conn.Open();
+                    objComandoSql.ExecuteNonQuery();
+                    objComandoSql.Parameters.Clear();
+
+                    MessageBox.Show("Dados alterados com sucesso");
+                    txbBuscar.Text = "*";
+                    limparTextBoxes(this.Controls);
+                }
+                catch (Exception erro)
+                {
+                    MessageBox.Show("Algo deu Ruim\n" + erro.Message);
+                    conn.Close();
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
     }
 }

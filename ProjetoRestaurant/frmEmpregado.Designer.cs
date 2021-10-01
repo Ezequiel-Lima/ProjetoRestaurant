@@ -48,6 +48,7 @@ namespace ProjetoRestaurant
             this.txbCodigo = new System.Windows.Forms.TextBox();
             this.txbInfo6 = new System.Windows.Forms.TextBox();
             this.lblCod = new System.Windows.Forms.Label();
+            this.btnSalvarAlteracao = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvfunc)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,19 +144,19 @@ namespace ProjetoRestaurant
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(272, 376);
+            this.btnSalvar.Location = new System.Drawing.Point(162, 376);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(109, 34);
+            this.btnSalvar.Size = new System.Drawing.Size(156, 34);
             this.btnSalvar.TabIndex = 6;
-            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.Text = "Cadastrar Novo";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // txbLimpar
             // 
-            this.txbLimpar.Location = new System.Drawing.Point(387, 376);
+            this.txbLimpar.Location = new System.Drawing.Point(468, 376);
             this.txbLimpar.Name = "txbLimpar";
-            this.txbLimpar.Size = new System.Drawing.Size(109, 34);
+            this.txbLimpar.Size = new System.Drawing.Size(138, 34);
             this.txbLimpar.TabIndex = 7;
             this.txbLimpar.Text = "Limpar";
             this.txbLimpar.UseVisualStyleBackColor = true;
@@ -163,9 +164,9 @@ namespace ProjetoRestaurant
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(502, 376);
+            this.btnDelete.Location = new System.Drawing.Point(612, 376);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(109, 34);
+            this.btnDelete.Size = new System.Drawing.Size(131, 34);
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -233,6 +234,16 @@ namespace ProjetoRestaurant
             this.lblCod.Size = new System.Drawing.Size(0, 20);
             this.lblCod.TabIndex = 30;
             // 
+            // btnSalvarAlteracao
+            // 
+            this.btnSalvarAlteracao.Location = new System.Drawing.Point(324, 376);
+            this.btnSalvarAlteracao.Name = "btnSalvarAlteracao";
+            this.btnSalvarAlteracao.Size = new System.Drawing.Size(138, 34);
+            this.btnSalvarAlteracao.TabIndex = 7;
+            this.btnSalvarAlteracao.Text = "Salvar Alteração";
+            this.btnSalvarAlteracao.UseVisualStyleBackColor = true;
+            this.btnSalvarAlteracao.Click += new System.EventHandler(this.btnSalvarAlteracao_Click);
+            // 
             // frmEmpregado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -243,6 +254,7 @@ namespace ProjetoRestaurant
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.dgvfunc);
             this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnSalvarAlteracao);
             this.Controls.Add(this.txbLimpar);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.txbInfo6);
@@ -288,5 +300,6 @@ namespace ProjetoRestaurant
         private System.Windows.Forms.TextBox txbCodigo;
         private System.Windows.Forms.TextBox txbInfo6;
         private System.Windows.Forms.Label lblCod;
+        private System.Windows.Forms.Button btnSalvarAlteracao;
     }
 }
